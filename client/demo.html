@@ -1,0 +1,67 @@
+
+<html>
+
+    <head>
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js">
+        </script>
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script langauage="javascript">
+            function showMessage(value) {
+                document.getElementById("message").innerHTML = value;
+            }	  
+        </script>
+           <script>
+            getdata();
+                    
+                    function getdata() {
+                        console.log("hello")
+                        axios.get('http://localhost:3000/api/customers').then(reponse => {
+
+                            console.log('reponse.data', reponse.data[reponse.data.length-1])
+                            var resdata = reponse.data[reponse.data.length-1]
+                            console.log('resdata', resdata.customerid)
+                            document.getElementById('customerid').innerHTML = resdata.customerid
+                            document.getElementById('accountid').innerHTML = resdata.accountid
+                            document.getElementById('email').innerHTML = resdata.email
+                            document.getElementById('name').innerHTML = resdata.name
+                            document.getElementById('phone').innerHTML = resdata.phone
+
+                           
+                        });
+                    }
+                    
+                    
+                </script>
+            <style>
+                .content{
+                    padding: 50px;
+                    width: 25%;
+                    margin: 0 auto;
+                }
+                p {
+                     font-size: 18px;
+                }
+            </style>
+    </head>
+    
+    <body>
+      
+   
+    <div class="content">
+        <div>
+        <h3>Preview Data</h3>
+        <p><b>customer ID : </b> <span id="customerid" ></span></p>
+        <p><b>Account ID :</b> <span id="accountid" ></span></p>
+        <p><b>Email :</b> <span id="email" ></span></p>
+        <p><b>Name :</b> <span id="name" ></span></p>
+        <p><b>Phone :</b> <span id="phone" ></span></p>
+        </div>
+    </div>
+      
+       
+    </body>
+    
+    </html>
